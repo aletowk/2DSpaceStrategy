@@ -1,7 +1,7 @@
 
 
 browser 		= firefox
-command_args 	= -jsconsole 
+command_args 	= #-jsconsole 
 
 target_page		= MainPage.html 
 

@@ -31,6 +31,10 @@ function Player()
     	app.stage.removeChild(this.player_sprite);
     }
 
+    this.init_enemy_army = function(army)
+    {
+        this.enemy_army = army;
+    }
 
     this.addMissile = function () {
     	if(this.missile_array.length < this.missile_number)
@@ -50,7 +54,9 @@ function Player()
         }
     }
 
-    this.updateMissile = function(){
+    this.updateMissile = function()
+    {
+        let enemy_tab = this.enemy_army.enemy_tab;
     	for( var i = 0; i < this.missile_array.length ; i++ )
     	{
     		if(this.missile_array[i].bool == true)
@@ -104,6 +110,7 @@ function Player()
     }
     this.updateRocket = function()
     {
+        let enemy_tab = this.enemy_army.enemy_tab;
     	for(var i = 0 ; i < this.rocket_array.length;i++)
     	{
     		//Find nearest target
@@ -136,7 +143,7 @@ function Player()
 			}else
 			{
 				//AI
-				console.log("Target "+ans[1]+" Detected at distance "+ ans[2]);
+				//console.log("Target "+ans[1]+" Detected at distance "+ ans[2]);
 				x_dir = Math.floor(enemy_tab[ans[1]].x - this.rocket_array[i].x)/ans[2];
 				y_dir = Math.floor(enemy_tab[ans[1]].y - this.rocket_array[i].y)/ans[2];
 
@@ -152,6 +159,7 @@ function Player()
 	    	            {
 	    	            	console.log("Shot on target" + j);
 	    	                app.stage.removeChild(enemy_tab[j]);
+                            enemy_tab[j].remove();
 	    	                enemy_tab.splice(j,1);
 	    	                console.log("Remaining targets : "+enemy_tab.length);
 	    	                app.stage.removeChild(this.rocket_array[i]);
@@ -171,9 +179,14 @@ function Player()
 
 
     this.update = function(){
+        // update Missiles
+        this.updateMissile();
+        // update rockets
+        this.updateRocket();
+        //update the player movments
     	newX = this.player_sprite.x + this.player_sprite.vx;
     	newY = this.player_sprite.y + this.player_sprite.vy;
-
+        let enemy_tab = this.enemy_army.enemy_tab;
     	// Test Joueur en dehors ou collided
     	if( borderTest(newX,newY) ){
     		if(enemy_tab.length == 0)	state = end;

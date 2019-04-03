@@ -142,6 +142,8 @@ let left = keyboard('Left'),
     shot_two_key.press = function(){
         player.addRocket();
     }
+    shot_two_key.release = function(){
+    }
     shift.press = function(){
         player.player_sprite.nominal_speed += 1;
         if(player.player_sprite.nominal_speed >= 10){

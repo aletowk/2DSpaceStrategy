@@ -49,8 +49,7 @@ function setup()
 
     //init_enemies();
     army.init_army();
-
-
+    player.init_enemy_army(army);
     //print_enemies();    
     //Set the game state
     state = play;
@@ -66,10 +65,10 @@ function play(delta)
 {
     //player.updateRocket();
     //player.updateMissile();
-    //player.update();
+    player.update();
     //tracking_IA(enemy_tab,player.player_sprite);
 
-    army.update(player);
+    //army.update(player);
 
 
 }

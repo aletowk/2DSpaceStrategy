@@ -13,13 +13,10 @@ function CArmy()
 		for(var i = 0; i < this.troop_number ; i++)
 		{
 			var tmpEnemy = new Enemy();
-			//tmpEnemy.init_enemy();
-			console.log(tmpEnemy);
+			tmpEnemy.init_enemy();
 			this.enemy_tab.push(tmpEnemy);
-			app.stage.addChild(this.enemy_tab[i]);
+			app.stage.addChild(this.enemy_tab[i].enemy_sprite);
 		}
-
-
 	}
 	this.remove_army = function()
 	{
@@ -47,13 +44,20 @@ function CArmy()
 
 function Enemy()
 {
-		this.enemy_sprite = new Sprite(resources["img/enemyShip1.png"].texture);
-		this.enemy_sprite.x = getRandomInt(0,window_width/2 - 80);
-        this.enemy_sprite.y = getRandomInt(0,window_width/2 - 80);
+	this.sprite_ressource = resources["img/enemyShip1.png"].texture;
 	this.init_enemy = function()
+	{	
+		this.enemy_sprite = new Sprite(this.sprite_ressource);
+		this.enemy_sprite.x = getRandomInt(0,window_width/2 - 80);
+    	this.enemy_sprite.y = getRandomInt(0,window_width/2 - 80);
+    	this.enemy_sprite.scale.set(0.2,0.2);
+    	this.x = this.enemy_sprite.x;
+    	this.y = this.enemy_sprite.y;
+    	this.pos = [this.x,this.y];
+	}
+	this.get_pos = function()
 	{
-		
-
+		return this.pos;
 	}
 	this.remove_enemy = function()
 	{
