@@ -19,7 +19,7 @@ function Player()
     
     this.player_sprite.scale.set(0.3,0.3);
 
-
+    this.enemy_tab;
 
     this.missile_array = [];
     this.missile_number = 10;

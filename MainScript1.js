@@ -40,13 +40,16 @@ let ship;
 let missile;
 let enemy;
 let player;
+let army = new CArmy();
 
 function setup()
 {
 
     player = new Player();
 
-    init_enemies();
+    //init_enemies();
+    army.init_army();
+
 
     //print_enemies();    
     //Set the game state
@@ -61,10 +64,14 @@ function gameLoop(delta){
 }
 function play(delta)
 {
-    player.updateRocket();
-    player.updateMissile();
-    player.update();
-    tracking_IA(enemy_tab,player.player_sprite);
+    //player.updateRocket();
+    //player.updateMissile();
+    //player.update();
+    //tracking_IA(enemy_tab,player.player_sprite);
+
+    army.update(player);
+
+
 }
 function end(delta)
 {
